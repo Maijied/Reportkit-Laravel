@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+      - name: Notify Packagist (fallback)
+        if: ${{ secrets.PACKAGIST_TOKEN != '' }}
+        env:
+          PACKAGIST_USER: ${{ secrets.PACKAGIST_USER }}
+          PACKAGIST_TOKEN: ${{ secrets.PACKAGIST_TOKEN }}
+        run: |
+          curl -sSf -X POST -H 'content-type: application/json' \
+            "https://packagist.org/api/update-package?username=${PACKAGIST_USER}&apiToken=${PACKAGIST_TOKEN}" \
+            -d '{"repository":{"url":"https://packagist.org/packages/reportkit/laravel"}}' || true

@@ -4,6 +4,8 @@ namespace ReportKit\Laravel;
 
 use ReportKit\Core\Report\Report as CoreReport;
 use ReportKit\Core\Report\ReportRegistry;
+use ReportKit\Core\Source\MergedRowSource;
+use ReportKit\Laravel\Source\ConnectionRowSource;
 
 class ReportKitManager
 {
@@ -32,6 +34,33 @@ class ReportKitManager
     public function all()
     {
         return CoreReport::all();
+    }
+
+    /**
+     * Build a ConnectionRowSource for a named DB connection.
+     *
+     * @param string $connection
+     * @param callable $callback
+     * @param string|null $label
+     * @return ConnectionRowSource
+     */
+    public function connection($connection, $callback, $label = null)
+    {
+        return new ConnectionRowSource($connection, $callback, null, $label);
+    }
+
+    /**
+     * Merge multiple RowSources (typically ConnectionRowSource instances).
+     *
+     * @param array $sources
+     * @param string|null $dedupeKey
+     * @param string|null $orderBy
+     * @param string $direction
+     * @return MergedRowSource
+     */
+    public function merged(array $sources, $dedupeKey = null, $orderBy = null, $direction = 'asc')
+    {
+        return new MergedRowSource($sources, $dedupeKey, $orderBy, $direction);
     }
 
     /**

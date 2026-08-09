@@ -18,12 +18,22 @@ class ReportKitServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('reportkit.settings', function () {
+        $configPath = dirname(__DIR__) . '/config/reportkit.php';
+
+        if (method_exists($this, 'mergeConfigFrom') && is_file($configPath)) {
+            $this->mergeConfigFrom($configPath, 'reportkit');
+        }
+
+        $this->app->singleton('reportkit.settings', function ($app) {
+            $config = function_exists('config') ? config('reportkit', []) : [];
+
             return new ArraySettingsStore([
-                'brand.name' => 'ReportKit',
-                'brand.pdf_disclaimer' => 'This document was generated for authorized use only.',
-                'brand.accent' => '#0b7a4b',
-                'routes.enabled' => false,
+                'brand.name' => isset($config['brand']['name']) ? $config['brand']['name'] : 'ReportKit',
+                'brand.pdf_disclaimer' => isset($config['brand']['pdf_disclaimer'])
+                    ? $config['brand']['pdf_disclaimer']
+                    : 'This document was generated for authorized use only.',
+                'brand.accent' => isset($config['brand']['accent']) ? $config['brand']['accent'] : '#0b7a4b',
+                'routes.enabled' => !empty($config['routes']['enabled']),
             ]);
         });
 
@@ -42,15 +52,45 @@ class ReportKitServiceProvider extends ServiceProvider
     public function boot()
     {
         $viewPath = dirname(__DIR__) . '/resources/views';
+        $configPath = dirname(__DIR__) . '/config/reportkit.php';
 
         if (is_dir($viewPath)) {
             $this->loadViewsFrom($viewPath, 'reportkit');
         }
 
         if (method_exists($this, 'publishes')) {
-            $this->publishes([
-                dirname(__DIR__) . '/resources/views' => resource_path('views/vendor/reportkit'),
-            ], 'reportkit-views');
+            $publishes = [];
+
+            if (is_dir($viewPath)) {
+                $publishes[$viewPath] = resource_path('views/vendor/reportkit');
+            }
+
+            $this->publishes($publishes, 'reportkit-views');
+
+            if (is_file($configPath)) {
+                $this->publishes([
+                    $configPath => function_exists('config_path')
+                        ? config_path('reportkit.php')
+                        : base_path('config/reportkit.php'),
+                ], 'reportkit-config');
+            }
+
+            $uiCss = dirname(__DIR__) . '/resources/assets/css';
+            $uiJs = dirname(__DIR__) . '/resources/assets/js';
+
+            if (is_dir($uiCss) || is_dir($uiJs)) {
+                $assetMap = [];
+
+                if (is_dir($uiCss)) {
+                    $assetMap[$uiCss] = public_path('vendor/reportkit/css');
+                }
+
+                if (is_dir($uiJs)) {
+                    $assetMap[$uiJs] = public_path('vendor/reportkit/js');
+                }
+
+                $this->publishes($assetMap, 'reportkit-assets');
+            }
         }
 
         $this->loadReportDefinitions();
@@ -68,14 +108,21 @@ class ReportKitServiceProvider extends ServiceProvider
      */
     protected function loadReportDefinitions()
     {
-        $path = base_path('app/Reports');
+        $relative = config('reportkit.definitions_path', 'app/Reports');
+        $path = base_path($relative);
 
         if (!is_dir($path)) {
             return;
         }
 
-        foreach (glob($path . '/*.php') as $file) {
-            require $file;
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS)
+        );
+
+        foreach ($iterator as $file) {
+            if ($file->isFile() && substr($file->getFilename(), -4) === '.php') {
+                require $file->getPathname();
+            }
         }
     }
 
@@ -88,11 +135,21 @@ class ReportKitServiceProvider extends ServiceProvider
     {
         $app = function_exists('app') ? app() : null;
 
-        if (!$app || !isset($app['reportkit.settings'])) {
+        if (!$app) {
             return;
         }
 
-        if (!$app['reportkit.settings']->get('routes.enabled', false)) {
+        $enabled = false;
+
+        if (function_exists('config')) {
+            $enabled = (bool) config('reportkit.routes.enabled', false);
+        }
+
+        if (!$enabled && isset($app['reportkit.settings'])) {
+            $enabled = (bool) $app['reportkit.settings']->get('routes.enabled', false);
+        }
+
+        if (!$enabled) {
             return;
         }
 

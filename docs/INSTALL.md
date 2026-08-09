@@ -11,28 +11,19 @@ Or VCS repositories:
 - https://github.com/Maijied/Reportkit-Core.git
 - https://github.com/Maijied/Reportkit-Laravel.git
 
-Provider / alias are **auto-discovered** on Laravel 5.5+ (`extra.laravel` in composer.json). Manual registration is only needed on older discovery-less hosts.
+Provider / alias are **auto-discovered** on Laravel 5.5+ (`extra.laravel` in composer.json).
 
-## 2. UI assets
-
-From https://github.com/Maijied/Reportkit-UI :
+## 2. Install helper
 
 ```bash
-mkdir -p public/css/reportkit public/js/reportkit
-# copy css/reportkit.css
-# copy css/reportkit-compat.css
-# copy js/reportkit.js
+php artisan reportkit:install --with-config --publish-assets
 ```
 
-Optional: `php artisan vendor:publish --tag=reportkit-views` to customize Blade partials.
+This publishes `config/reportkit.php` and copies UI assets into `public/vendor/reportkit/` when the sibling `@reportkit/ui` package is available (or use `vendor:publish --tag=reportkit-assets` after embedding assets).
 
-## 3. Checklist
+Docs: https://reportkit.lorapok.tech/docs/0.1/getting-started/installation
 
-```bash
-php artisan reportkit:install
-```
-
-## 4. Scaffold a NEW report only
+## 3. Scaffold a NEW report only
 
 ```bash
 php artisan reportkit:make Demo --route=admin/demo-report --preset=hybrid --dry-run
@@ -40,14 +31,19 @@ php artisan reportkit:make Demo --route=admin/demo-report --preset=hybrid --layo
 composer dump-autoload
 ```
 
-`--layout` defaults to `layouts.app`. Register the printed routes (`{{route}}/data` for DataTables). Domain SQL stays in `app/Repositories/Reports`.
+Domain SQL stays in `app/Repositories/Reports`. Prefer `ReportKit::merged()` + `ReportKit::connection()` for dual-DB.
 
 **Do not rewrite existing host reports until you explicitly migrate them.**
 
-## 5. Definitions folder
+## 4. Definitions folder
 
-Create `app/Reports/` — the provider auto-requires `*.php` on boot.
+Create `app/Reports/` — the provider recursively requires `*.php` on boot (`reportkit.definitions_path`).
 
-## 6. Optional routes helper
+## 5. Optional routes helper
 
-Set `routes.enabled` to `true` on the settings store, then call `ReportKit::routes()` to load `src/Http/routes.php` (`reportkit/{slug}/data`). Default remains **disabled**.
+Set `routes.enabled` to `true` in `config/reportkit.php`, then call `ReportKit::routes()`:
+
+- `reportkit/{slug}/data`
+- `reportkit/{slug}/weeks`
+- `reportkit/{slug}/rows`
+- `reportkit/{slug}/trace` (when `routes.trace` is true)
