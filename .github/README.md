@@ -7,12 +7,17 @@
 <p align="center"><strong>Multi-database reports for Laravel 5.5 → 13 — install, scaffold, ship.</strong></p>
 
 <p align="center">
-  <a href="https://packagist.org/packages/reportkit/laravel"><img alt="Packagist Version" src="https://img.shields.io/packagist/v/reportkit/laravel?include_prereleases&label=packagist&color=0b7a4b"></a>
-  <a href="https://packagist.org/packages/reportkit/laravel"><img alt="Downloads" src="https://img.shields.io/packagist/dt/reportkit/laravel?color=0b7a4b"></a>
-  <img alt="PHP" src="https://img.shields.io/badge/php-%E2%89%A5%207.0-777bb4">
-  <img alt="Laravel" src="https://img.shields.io/badge/laravel-5.5%20%E2%86%92%2013-ff2d20">
-  <a href="https://github.com/Maijied/Reportkit-Laravel/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Maijied/Reportkit-Laravel/actions/workflows/ci.yml/badge.svg"></a>
-  <a href="LICENSE"><img alt="License" src="https://img.shields.io/packagist/l/reportkit/laravel?color=0b7a4b"></a>
+  <img src="https://hits.sh/reportkit.lorapok.tech.svg?view=today-total&style=flat-square&label=visitors&color=0b7a4b&labelColor=08130f" alt="Visitor Count" />
+  <a href="https://packagist.org/packages/reportkit/laravel"><img src="https://img.shields.io/packagist/v/reportkit/laravel?include_prereleases&style=flat-square&color=0b7a4b&labelColor=08130f" alt="Packagist version" /></a>
+  <a href="https://packagist.org/packages/reportkit/laravel"><img src="https://img.shields.io/packagist/dt/reportkit/laravel?style=flat-square&color=34c98a&labelColor=08130f" alt="Packagist downloads" /></a>
+  <img src="https://img.shields.io/badge/php-%E2%89%A5%207.0-777bb4?style=flat-square&labelColor=08130f" alt="PHP" />
+  <img src="https://img.shields.io/badge/laravel-5.5%20%E2%86%92%2013-ff2d20?style=flat-square&labelColor=08130f" alt="Laravel" />
+  <a href="https://github.com/Maijied/Reportkit-Laravel/actions/workflows/ci.yml"><img src="https://github.com/Maijied/Reportkit-Laravel/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/packagist/l/reportkit/laravel?style=flat-square&color=0b7a4b&labelColor=08130f" alt="License" /></a>
+</p>
+
+<p align="center">
+  <a href="https://reportkit.lorapok.tech"><img src="https://img.shields.io/badge/live-reportkit.lorapok.tech-0b7a4b?style=flat-square&labelColor=08130f" alt="Website" /></a>
 </p>
 
 <p align="center">
@@ -47,32 +52,32 @@ php artisan reportkit:make Demo --route=admin/demo-report --preset=hybrid --layo
 sequenceDiagram
   participant B as Browser
   participant R as Domain routes
-  participant C as App report controller
-  participant S as MergedRowSource (live + archive)
-  participant K as reportkit/core
-  B->>R: GET admin/demo-report
+  participant C as Report controller
+  participant S as MergedRowSource
+  participant K as reportkit core
+  B->>R: GET demo report page
   R->>C: index
-  C-->>B: Blade + @reportkit/ui
-  B->>R: GET admin/demo-report/data
-  R->>C: data(filters, paging)
+  C-->>B: Blade and UI assets
+  B->>R: GET demo report data
+  R->>C: data request
   C->>S: rows from each connection
-  C->>K: PseudoPaginator + DataTableResponder
+  C->>K: paginate and respond
   K-->>B: DataTables JSON
 ```
 
 ## Architecture
 
 ```mermaid
-graph LR
-  subgraph host ["Laravel 5.5+ host"]
-    Prov["ReportKitServiceProvider (auto-discovery)"]
-    Fac["Facades/ReportKit"]
-    Defs["app/Reports/*.php"]
-    Ctrl["App\\Http\\Controllers\\Reports"]
-    Views["reportkit:: Blade"]
+flowchart LR
+  subgraph host [Laravel 5.5 plus host]
+    Prov[ServiceProvider]
+    Fac[ReportKit facade]
+    Defs[Report definitions]
+    Ctrl[Report controllers]
+    Views[Blade views]
   end
-  Core["reportkit/core"]
-  UI["@reportkit/ui assets"]
+  Core[reportkit core]
+  UI[reportkit-ui assets]
   Prov --> Core
   Defs --> Core
   Ctrl --> Core
