@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 class InstallCommand extends Command
 {
     protected $signature = 'reportkit:install
-                            {--publish-assets : Publish @reportkit/ui CSS/JS into public/vendor/reportkit}
+                            {--publish-assets : Publish @lorapok-labs/reportkit-ui CSS/JS into public/vendor/reportkit}
                             {--with-config : Publish config/reportkit.php}';
 
     protected $description = 'Install ReportKit checklist / publish assets & config (Laravel 5.5+)';
@@ -73,7 +73,7 @@ class InstallCommand extends Command
         }
 
         if (!$root) {
-            $this->warn('UI assets package not found locally — copy from https://github.com/Maijied/Reportkit-UI or npm @reportkit/ui');
+            $this->warn('UI assets package not found locally — copy from https://github.com/Maijied/Reportkit-UI or npm @lorapok-labs/reportkit-ui');
             return;
         }
 

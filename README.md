@@ -165,7 +165,7 @@ $rows = $source->getRows($filters);  // merged + deduped + sorted
 | [`reportkit/core`](https://github.com/Maijied/Reportkit-Core) | Engine (PHP 5.6 → 8.5) |
 | [`reportkit/laravel-legacy`](https://github.com/Maijied/Reportkit-Laravel-Legacy) | Laravel 4.1 – 5.4 |
 | [`reportkit/laravel`](https://github.com/Maijied/Reportkit-Laravel) | This repository (5.5 → 12 / 13) |
-| [`@reportkit/ui`](https://github.com/Maijied/Reportkit-UI) | Browser CSS/JS |
+| [`@lorapok-labs/reportkit-ui`](https://github.com/Maijied/Reportkit-UI) | Browser CSS/JS |
 
 ## Author
 

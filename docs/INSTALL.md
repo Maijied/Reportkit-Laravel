@@ -19,7 +19,7 @@ Provider / alias are **auto-discovered** on Laravel 5.5+ (`extra.laravel` in com
 php artisan reportkit:install --with-config --publish-assets
 ```
 
-This publishes `config/reportkit.php` and copies UI assets into `public/vendor/reportkit/` when the sibling `@reportkit/ui` package is available (or use `vendor:publish --tag=reportkit-assets` after embedding assets).
+This publishes `config/reportkit.php` and copies UI assets into `public/vendor/reportkit/` when the sibling `@lorapok-labs/reportkit-ui` package is available (or use `vendor:publish --tag=reportkit-assets` after embedding assets).
 
 Docs: https://reportkit.lorapok.tech/docs/0.1/getting-started/installation
 

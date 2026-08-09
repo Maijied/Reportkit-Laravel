@@ -109,7 +109,7 @@ $rows = $source->getRows($filters);  // merged + deduped + sorted
 | `reportkit/core` | Engine (PHP 5.6 → 8.5) |
 | `reportkit/laravel-legacy` | Laravel 4.1 – 5.4 |
 | `reportkit/laravel` | This repository (5.5 → 12 / 13) |
-| `@reportkit/ui` | Browser CSS/JS |
+| `@lorapok-labs/reportkit-ui` | Browser CSS/JS |
 
 ## Author
 

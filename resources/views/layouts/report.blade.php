@@ -1,5 +1,5 @@
 {{-- ReportKit layout shell (CAS design order). Host fills $slots. --}}
-{{-- Include reportkit.css from @reportkit/ui --}}
+{{-- Include reportkit.css from @lorapok-labs/reportkit-ui --}}
 <div class="rk-page">
     @include('reportkit::ui.page-head')
     @include('reportkit::ui.filter-panel')
