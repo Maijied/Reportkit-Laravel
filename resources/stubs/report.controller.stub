@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * Thin controller stub for {{title}}.
+ * Wire routes manually in your domain route file (do not auto-edit existing reports).
+ *
+ * Example:
+ *   Route::get('{{route}}', 'Reports\\{{Studly}}ReportController@index');
+ *   Route::get('{{route}}-data', 'Reports\\{{Studly}}ReportController@data');
+ */
+
+use ReportKit\Core\Table\DataTableResponder;
+use ReportKit\Core\Table\PseudoPaginator;
+
+class {{Studly}}ReportController extends AdminBaseController
+{
+    public function index()
+    {
+        return View::make('admin.reports.{{slug}}', [
+            'reportTitle' => '{{title}}',
+            'reportKicker' => 'REPORT',
+            'reportSubtitle' => 'Scaffolded ReportKit page — fill SQL next.',
+            'title' => '{{title}}',
+        ]);
+    }
+
+    public function data()
+    {
+        $inputs = Input::all();
+        $service = new \App\Services\Reports\{{Studly}}ReportService();
+        $rows = $service->getRows($inputs);
+        $paginator = new PseudoPaginator();
+        $start = isset($inputs['start']) ? (int) $inputs['start'] : 0;
+        $length = isset($inputs['length']) ? (int) $inputs['length'] : 25;
+        $page = $paginator->slice($rows, $start, $length);
+        $responder = new DataTableResponder();
+
+        return Response::json(
+            $responder->respond($inputs, $page, count($rows), count($rows), $service->getSummary($rows))
+        );
+    }
+}

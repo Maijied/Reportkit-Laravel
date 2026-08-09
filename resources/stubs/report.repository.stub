@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Repositories\Reports;
+
+/**
+ * Domain SQL for {{title}} — stays in the host app forever.
+ */
+class {{Studly}}ReportRepository
+{
+    /**
+     * @param array $filters
+     * @return array
+     */
+    public function fetchRows(array $filters)
+    {
+        // TODO: implement SQL / dual-DB fetch
+        return [];
+    }
+
+    /**
+     * @param array $filters
+     * @return int
+     */
+    public function countRows(array $filters)
+    {
+        return count($this->fetchRows($filters));
+    }
+
+    /**
+     * @param array $rows
+     * @return array
+     */
+    public function summarize(array $rows)
+    {
+        return [
+            'total_rows' => count($rows),
+        ];
+    }
+}

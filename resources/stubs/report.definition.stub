@@ -1,0 +1,28 @@
+<?php
+/**
+ * Stub: app/Reports/{{Studly}}Report.php
+ */
+use ReportKit\Core\Report\Report;
+use ReportKit\Core\Table\Column;
+use ReportKit\Core\Table\ReportTable;
+
+Report::define('{{slug}}', function ($r) {
+    $r->title('{{title}}')
+        ->kicker('REPORT')
+        ->subtitle('Scaffolded by reportkit:make — fill repository SQL next.')
+        ->route('{{route}}')
+        ->service('App\\Services\\Reports\\{{Studly}}ReportService')
+        ->flags([
+{{flags_php}}
+        ])
+        ->table(
+            ReportTable::make('main')
+                ->title('Results')
+                ->serverSide()
+                ->pageLength(25)
+                ->columns([
+                    Column::make('id', 'ID')->sortable(),
+                    Column::make('name', 'Name'),
+                ])
+        );
+});

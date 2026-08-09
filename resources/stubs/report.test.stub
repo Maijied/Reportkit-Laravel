@@ -1,0 +1,19 @@
+<?php
+
+require_once __DIR__ . '/../../../../bootstrap/autoload.php';
+
+use ReportKit\Core\Date\DateRangeChunker;
+
+/**
+ * Smoke test for scaffolded {{title}}.
+ */
+class {{Studly}}ReportTest extends PHPUnit_Framework_TestCase
+{
+    public function testDateChunkerProducesWeeks()
+    {
+        $chunker = new DateRangeChunker();
+        $weeks = $chunker->getWeeklyRanges('2026-01-01', '2026-01-15');
+        $this->assertGreaterThanOrEqual(2, count($weeks));
+        $this->assertSame('2026-01-01', $weeks[0]['start']);
+    }
+}
