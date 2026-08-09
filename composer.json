@@ -1,0 +1,43 @@
+{
+    "name": "reportkit/laravel",
+    "description": "Laravel 5.5–13 adapter for ReportKit (provider, Blade CAS pack, reportkit:make).",
+    "type": "library",
+    "version": "0.1.0",
+    "license": "MIT",
+    "homepage": "https://github.com/Maijied/Reportkit-Laravel",
+    "support": {
+        "issues": "https://github.com/Maijied/Reportkit-Laravel/issues",
+        "source": "https://github.com/Maijied/Reportkit-Laravel"
+    },
+    "keywords": ["laravel", "reportkit", "datatables", "export"],
+    "authors": [
+        {
+            "name": "Mohammad Maizied Hasan Majumder",
+            "email": "mdshuvo40@gmail.com",
+            "homepage": "https://github.com/Maijied",
+            "role": "Founder & Principal Engineer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "illuminate/support": ">=5.5 <14",
+        "reportkit/core": "0.1.*|dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "ReportKit\\Laravel\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ReportKit\\Laravel\\ReportKitServiceProvider"
+            ],
+            "aliases": {
+                "ReportKit": "ReportKit\\Laravel\\Facades\\ReportKit"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

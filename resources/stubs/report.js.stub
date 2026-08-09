@@ -1,0 +1,27 @@
+(function (window) {
+    'use strict';
+    if (!window.ReportKit || !window.jQuery) {
+        return;
+    }
+    var $ = window.jQuery;
+    ReportKit.fonts.ensure();
+    ReportKit.syncLoader.bindForm('#search-pan');
+    if ($.fn.dataTable) {
+        ReportKit.table.mount('#rkTable', {
+            serverSide: true,
+            deferLoading: 0,
+            ajax: {
+                url: '/{{route}}/data',
+                data: function (d) {
+                    $('#search-pan').serializeArray().forEach(function (item) {
+                        d[item.name] = item.value;
+                    });
+                }
+            },
+            columns: [
+                { data: 'id' },
+                { data: 'name' }
+            ]
+        });
+    }
+}(window));

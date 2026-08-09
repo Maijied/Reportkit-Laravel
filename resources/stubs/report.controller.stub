@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers\Reports;
+
+use App\Http\Controllers\Controller;
+use App\Services\Reports\{{Studly}}ReportService;
+use Illuminate\Http\Request;
+use ReportKit\Core\Table\DataTableResponder;
+use ReportKit\Core\Table\PseudoPaginator;
+
+/**
+ * Thin controller stub for {{title}}.
+ *
+ * Example:
+ *   Route::get('{{route}}', [{{Studly}}ReportController::class, 'index']);
+ *   Route::get('{{route}}/data', [{{Studly}}ReportController::class, 'data']);
+ */
+class {{Studly}}ReportController extends Controller
+{
+    public function index()
+    {
+        return view('reports.{{slug}}', [
+            'reportTitle' => '{{title}}',
+            'reportKicker' => 'REPORT',
+            'reportSubtitle' => 'Scaffolded ReportKit page — fill SQL next.',
+            'title' => '{{title}}',
+        ]);
+    }
+
+    public function data(Request $request)
+    {
+        $inputs = $request->all();
+        $service = new {{Studly}}ReportService();
+        $rows = $service->getRows($inputs);
+        $paginator = new PseudoPaginator();
+        $start = isset($inputs['start']) ? (int) $inputs['start'] : 0;
+        $length = isset($inputs['length']) ? (int) $inputs['length'] : 25;
+        $page = $paginator->slice($rows, $start, $length);
+        $responder = new DataTableResponder();
+
+        return response()->json(
+            $responder->respond($inputs, $page, count($rows), count($rows), $service->getSummary($rows))
+        );
+    }
+}
