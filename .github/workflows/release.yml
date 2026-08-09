@@ -15,12 +15,17 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
-      - name: Notify Packagist (fallback)
-        if: ${{ secrets.PACKAGIST_TOKEN != '' }}
+      - name: Notify Packagist
         env:
           PACKAGIST_USER: ${{ secrets.PACKAGIST_USER }}
           PACKAGIST_TOKEN: ${{ secrets.PACKAGIST_TOKEN }}
         run: |
-          curl -sSf -X POST -H 'content-type: application/json' \
-            "https://packagist.org/api/update-package?username=${PACKAGIST_USER}&apiToken=${PACKAGIST_TOKEN}" \
-            -d '{"repository":{"url":"https://packagist.org/packages/reportkit/laravel"}}' || true
+          if [ -z "$PACKAGIST_USER" ] || [ -z "$PACKAGIST_TOKEN" ]; then
+            echo "PACKAGIST_USER / PACKAGIST_TOKEN not set — skipping (register package + secrets first)"
+            exit 0
+          fi
+          curl -sS -X POST \
+            -H 'Content-Type: application/json' \
+            -H "Authorization: Bearer ${PACKAGIST_USER}:${PACKAGIST_TOKEN}" \
+            'https://packagist.org/api/update-package' \
+            -d '{"repository":"https://github.com/Maijied/Reportkit-Laravel"}'
