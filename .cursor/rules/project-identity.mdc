@@ -1,0 +1,12 @@
+---
+description: ReportKit Laravel modern identity
+alwaysApply: true
+---
+
+# reportkit/laravel
+
+Canonical remote: https://github.com/Maijied/Reportkit-Laravel.git
+
+Author: Mohammad Maizied Hasan Majumder \<mdshuvo40@gmail.com\>  
+Target: Laravel 5.5 → current (12/13), PHP ≥ 7.0  
+Do not push to Shohoz bus remotes unless asked. No Cursor commit trailers.
