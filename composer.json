@@ -3,10 +3,10 @@
     "description": "Laravel 5.5\u201313 adapter for ReportKit (provider, Blade CAS pack, reportkit:make).",
     "type": "library",
     "license": "MIT",
-    "homepage": "https://github.com/Maijied/Reportkit-Laravel",
+    "homepage": "https://github.com/Maijied/Reportkit-Core/tree/main/reportkit-laravel",
     "support": {
-        "issues": "https://github.com/Maijied/Reportkit-Laravel/issues",
-        "source": "https://github.com/Maijied/Reportkit-Laravel"
+        "issues": "https://github.com/Maijied/Reportkit-Core/issues",
+        "source": "https://github.com/Maijied/Reportkit-Core/tree/main/reportkit-laravel"
     },
     "keywords": [
         "laravel",

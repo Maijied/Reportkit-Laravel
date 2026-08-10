@@ -6,10 +6,9 @@
 composer require reportkit/core reportkit/laravel
 ```
 
-Or VCS repositories:
+Or VCS monorepo (single clone):
 
 - https://github.com/Maijied/Reportkit-Core.git
-- https://github.com/Maijied/Reportkit-Laravel.git
 
 Provider / alias are **auto-discovered** on Laravel 5.5+ (`extra.laravel` in composer.json).
 
