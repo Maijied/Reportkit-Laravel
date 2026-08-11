@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" width="520" height="420" role="img" aria-label="ReportKit">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 320" width="1080" height="320" role="img" aria-label="ReportKit">
   <title>ReportKit</title>
   <defs>
-    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#0b7a4b"/>
-      <stop offset="1" stop-color="#22a06b"/>
+      <stop offset="1" stop-color="#34c98a"/>
     </linearGradient>
   </defs>
-  <g transform="translate(4 20)">
+
+  <g transform="translate(8 8) scale(0.72)">
+    <rect width="512" height="512" rx="112" fill="#0a1410"/>
     <g fill="#151b20" stroke="#243038" stroke-width="2">
       <ellipse cx="390" cy="198" rx="30" ry="20" transform="rotate(32 390 198)"/>
       <ellipse cx="418" cy="268" rx="30" ry="20" transform="rotate(72 418 268)"/>
-      <ellipse cx="384" cy="346" rx="30" ry="20" transform="rotate(118 384 346)"/>
-      <ellipse cx="212" cy="402" rx="30" ry="20" transform="rotate(-162 212 402)"/>
       <ellipse cx="128" cy="346" rx="30" ry="20" transform="rotate(-118 128 346)"/>
       <ellipse cx="94" cy="268" rx="30" ry="20" transform="rotate(-72 94 268)"/>
-      <ellipse cx="122" cy="198" rx="30" ry="20" transform="rotate(-32 122 198)"/>
-    </g>
-    <g fill="url(#panel)" opacity="0.9">
-      <rect x="378" y="188" width="22" height="5" rx="2.5" transform="rotate(32 389 190.5)"/>
-      <rect x="116" y="336" width="22" height="5" rx="2.5" transform="rotate(-118 127 338.5)"/>
     </g>
     <g transform="translate(352 132)">
       <ellipse cx="0" cy="0" rx="36" ry="28" fill="#151b20" stroke="#243038" stroke-width="2"/>
@@ -41,4 +36,10 @@
       <path d="M 410,256 L 410,132 Q 410,120 422,120 L 428,120 Q 440,120 440,132 L 440,256 Z" fill="#0b7a4b"/>
     </g>
   </g>
+
+  <text x="392" y="148" font-family="Manrope, Inter, sans-serif" font-size="16" font-weight="700" fill="#0b7a4b" letter-spacing="3">LORAPOK LABS</text>
+  <text x="392" y="210" font-family="Sora, Manrope, sans-serif" font-size="108" font-weight="700" letter-spacing="-3" fill="#08130f">Report<tspan fill="#0b7a4b">Kit</tspan></text>
+  <rect x="392" y="224" width="220" height="3" rx="1.5" fill="url(#accent)"/>
+  <text x="392" y="262" font-family="Manrope, Inter, sans-serif" font-size="22" font-weight="700" fill="#3d4f47" letter-spacing="1.8">MULTI-DATABASE REPORT ENGINE</text>
+  <text x="392" y="296" font-family="Manrope, Inter, sans-serif" font-size="26" font-weight="500" fill="#5b6b63">Prepare once · secure store · export without re-query</text>
 </svg>
