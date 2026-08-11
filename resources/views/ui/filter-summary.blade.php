@@ -1,3 +1,11 @@
+{{--
+ * Lorapok ReportKit
+ * Copyright (c) 2026 Lorapok Labs (https://lorapok.tech)
+ * Licensed under the Lorapok Non-Commercial License 1.0 (Lorapok-NCL-1.0)
+ *
+ * filter-summary — Blade UI partial.
+--}}
+
 {{-- Active filter summary strip --}}
 @if (!empty($filterSummary) && is_array($filterSummary))
 <div class="rk-filter-summary">
