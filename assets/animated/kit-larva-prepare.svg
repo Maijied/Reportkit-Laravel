@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="ReportKit Kit-Larva prepare animation">
+  <title>Kit-Larva prepare</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1410"/>
+      <stop offset="1" stop-color="#0f1f18"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0b7a4b"/>
+      <stop offset="1" stop-color="#22a06b"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8ef0c4" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#8ef0c4" stop-opacity="1"/>
+      <stop offset="1" stop-color="#8ef0c4" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <style><![CDATA[
+    @media (prefers-reduced-motion: reduce) {
+      .motion { animation: none !important; }
+      .flow-dot { opacity: 0; }
+    }
+    @keyframes wave {
+      0% { opacity: 0.2; filter: none; }
+      15% { opacity: 1; filter: url(#glow); }
+      30% { opacity: 0.25; filter: none; }
+      100% { opacity: 0.2; filter: none; }
+    }
+    @keyframes flowLive {
+      0% { offset-distance: 0%; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { offset-distance: 100%; opacity: 0; }
+    }
+    @keyframes flowArchive {
+      0% { offset-distance: 0%; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { offset-distance: 100%; opacity: 0; }
+    }
+    @keyframes mergeFlash {
+      0%, 70%, 100% { transform: scale(1); }
+      78% { transform: scale(1.55); }
+      86% { transform: scale(1.08); }
+    }
+    @keyframes barGrow {
+      0%, 55%, 100% { transform: scaleY(0.72); opacity: 0.75; }
+      65% { transform: scaleY(1); opacity: 1; }
+    }
+    @keyframes scan {
+      0% { transform: translateY(0); opacity: 0; }
+      20% { opacity: 0.35; }
+      80% { opacity: 0.35; }
+      100% { transform: translateY(420px); opacity: 0; }
+    }
+    .seg-1 { animation: wave 2.4s ease-in-out infinite; }
+    .seg-2 { animation: wave 2.4s ease-in-out infinite 0.3s; }
+    .seg-3 { animation: wave 2.4s ease-in-out infinite 0.6s; }
+    .seg-4 { animation: wave 2.4s ease-in-out infinite 0.9s; }
+    .seg-5 { animation: wave 2.4s ease-in-out infinite 1.2s; }
+    .seg-6 { animation: wave 2.4s ease-in-out infinite 1.5s; }
+    .seg-7 { animation: wave 2.4s ease-in-out infinite 1.8s; }
+    .seg-8 { animation: wave 2.4s ease-in-out infinite 2.1s; }
+    .merge-wrap { transform-origin: center; animation: mergeFlash 2.4s ease-in-out infinite; }
+    .bar-1 { transform-origin: 326px 256px; animation: barGrow 2.4s ease-in-out infinite 0.2s; }
+    .bar-2 { transform-origin: 374px 256px; animation: barGrow 2.4s ease-in-out infinite 0.45s; }
+    .bar-3 { transform-origin: 422px 256px; animation: barGrow 2.4s ease-in-out infinite 0.7s; }
+    .scan-line { animation: scan 2.4s linear infinite; }
+    .flow-live { offset-path: path('M 164,180 C 224,180 236,256 296,256'); animation: flowLive 2.4s linear infinite; }
+    .flow-archive { offset-path: path('M 164,332 C 224,332 236,256 296,256'); animation: flowArchive 2.4s linear infinite 0.35s; }
+  ]]></style>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect x="1.5" y="1.5" width="509" height="509" rx="110" fill="none" stroke="#1e3d2f" stroke-width="2"/>
+
+  <rect class="motion scan-line" x="24" y="96" width="464" height="2" fill="url(#wave)" opacity="0"/>
+
+  <g fill="#151b20" stroke="#243038" stroke-width="2">
+    <ellipse class="motion seg-1" cx="390" cy="198" rx="30" ry="20" transform="rotate(32 390 198)"/>
+    <ellipse class="motion seg-2" cx="418" cy="268" rx="30" ry="20" transform="rotate(72 418 268)"/>
+    <ellipse class="motion seg-3" cx="384" cy="346" rx="30" ry="20" transform="rotate(118 384 346)"/>
+    <ellipse class="motion seg-4" cx="300" cy="402" rx="30" ry="20" transform="rotate(162 300 402)"/>
+    <ellipse class="motion seg-5" cx="212" cy="402" rx="30" ry="20" transform="rotate(-162 212 402)"/>
+    <ellipse class="motion seg-6" cx="128" cy="346" rx="30" ry="20" transform="rotate(-118 128 346)"/>
+    <ellipse class="motion seg-7" cx="94" cy="268" rx="30" ry="20" transform="rotate(-72 94 268)"/>
+    <ellipse class="motion seg-8" cx="122" cy="198" rx="30" ry="20" transform="rotate(-32 122 198)"/>
+  </g>
+
+  <g fill="url(#panel)" opacity="0.85">
+    <rect class="motion seg-2" x="378" y="188" width="22" height="5" rx="2.5" transform="rotate(32 389 190.5)"/>
+    <rect class="motion seg-4" x="116" y="336" width="22" height="5" rx="2.5" transform="rotate(-118 127 338.5)"/>
+  </g>
+
+  <g transform="translate(352 132)">
+    <ellipse cx="0" cy="0" rx="36" ry="28" fill="#151b20" stroke="#243038" stroke-width="2"/>
+    <ellipse cx="-11" cy="-3" rx="8" ry="10" fill="#8ef0c4"/>
+    <ellipse cx="11" cy="-3" rx="8" ry="10" fill="#8ef0c4"/>
+    <circle cx="-11" cy="-2" r="3" fill="#08130f"/>
+    <circle cx="11" cy="-2" r="3" fill="#08130f"/>
+  </g>
+
+  <g transform="translate(118 138) scale(0.66)">
+    <path id="pathLive" d="M 164,180 C 224,180 236,256 296,256" fill="none" stroke="#ffffff" stroke-width="16" stroke-linecap="round" opacity="0.92"/>
+    <path id="pathArchive" d="M 164,332 C 224,332 236,256 296,256" fill="none" stroke="#f0ad4e" stroke-width="16" stroke-linecap="round"/>
+    <circle class="motion flow-dot flow-live" r="6" fill="#8ef0c4"/>
+    <circle class="motion flow-dot flow-archive" r="6" fill="#f8cd8a"/>
+    <path d="M 60,138 L 60,222 A 52,17 0 0 0 164,222 L 164,138 Z" fill="#ffffff"/>
+    <ellipse cx="112" cy="138" rx="52" ry="17" fill="#8ef0c4"/>
+    <path d="M 60,290 L 60,374 A 52,17 0 0 0 164,374 L 164,290 Z" fill="#f0ad4e"/>
+    <ellipse cx="112" cy="290" rx="52" ry="17" fill="#f8cd8a"/>
+    <circle cx="296" cy="256" r="22" fill="#ffffff"/>
+    <g class="motion merge-wrap">
+      <circle cx="296" cy="256" r="8" fill="#0b7a4b"/>
+    </g>
+    <path d="M 296,256 L 452,256" fill="none" stroke="#ffffff" stroke-width="16" stroke-linecap="round"/>
+    <path class="motion bar-1" d="M 314,256 L 314,208 Q 314,196 326,196 L 332,196 Q 344,196 344,208 L 344,256 Z" fill="#8ef0c4"/>
+    <path class="motion bar-2" d="M 362,256 L 362,170 Q 362,158 374,158 L 380,158 Q 392,158 392,170 L 392,256 Z" fill="#34c98a"/>
+    <path class="motion bar-3" d="M 410,256 L 410,132 Q 410,120 422,120 L 428,120 Q 440,120 440,132 L 440,256 Z" fill="#ffffff"/>
+  </g>
+</svg>

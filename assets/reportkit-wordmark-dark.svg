@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" width="1280" height="360" role="img" aria-label="ReportKit wordmark for dark backgrounds">
+  <title>ReportKit dark wordmark</title>
+  <defs>
+    <linearGradient id="wmMint" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8ef0c4"/>
+      <stop offset="1" stop-color="#34c98a"/>
+    </linearGradient>
+    <linearGradient id="wmBadge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a3d2e"/>
+      <stop offset="1" stop-color="#0a1410"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(28 44)">
+    <rect width="272" height="272" rx="64" fill="url(#wmBadge)" stroke="#34c98a" stroke-width="3"/>
+    <g transform="translate(48 52) scale(0.78)">
+      <path d="M 60,138 L 60,222 A 52,17 0 0 0 164,222 L 164,138 Z" fill="#34c98a"/>
+      <ellipse cx="112" cy="138" rx="52" ry="17" fill="#8ef0c4"/>
+      <path d="M 60,290 L 60,374 A 52,17 0 0 0 164,374 L 164,290 Z" fill="#f0ad4e"/>
+      <ellipse cx="112" cy="290" rx="52" ry="17" fill="#f8cd8a"/>
+      <path d="M 164,180 C 224,180 236,256 296,256" fill="none" stroke="#8ef0c4" stroke-width="16" stroke-linecap="round"/>
+      <path d="M 164,332 C 224,332 236,256 296,256" fill="none" stroke="#f8cd8a" stroke-width="16" stroke-linecap="round"/>
+      <circle cx="296" cy="256" r="20" fill="#fff"/>
+      <rect x="318" y="248" width="24" height="14" rx="7" fill="#8ef0c4"/>
+      <rect x="350" y="248" width="24" height="14" rx="7" fill="#34c98a"/>
+      <path d="M 380,256 L 440,256" fill="none" stroke="#8ef0c4" stroke-width="14" stroke-linecap="round"/>
+      <path d="M 314,256 L 314,210 Q 314,200 324,200 L 330,200 Q 340,200 340,210 L 340,256 Z" fill="#fff"/>
+      <path d="M 358,256 L 358,176 Q 358,166 368,166 L 374,166 Q 384,166 384,176 L 384,256 Z" fill="#8ef0c4"/>
+      <path d="M 402,256 L 402,144 Q 402,134 412,134 L 418,134 Q 428,134 428,144 L 428,256 Z" fill="#34c98a"/>
+    </g>
+  </g>
+
+  <g transform="translate(340 48)" fill="#ffffff" font-family="Sora, Segoe UI, system-ui, sans-serif">
+    <text x="0" y="52" font-size="22" font-weight="700" fill="#34c98a" letter-spacing="4">LORAPOK LABS</text>
+    <text x="0" y="168" font-size="108" font-weight="700" letter-spacing="-1">Report<tspan fill="url(#wmMint)">Kit</tspan></text>
+    <rect x="0" y="188" width="280" height="4" rx="2" fill="url(#wmMint)"/>
+    <text x="0" y="248" font-size="28" font-weight="600" fill="#b8cfc4" letter-spacing="1.5">DB-CHAIN / PREPARE / COMPOSE</text>
+    <text x="0" y="296" font-size="24" font-weight="500" fill="#7a9488">Multi-database report engine for Laravel and plain PHP</text>
+  </g>
+</svg>
