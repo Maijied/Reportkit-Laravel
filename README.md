@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Maijied/Reportkit-Laravel/main/assets/reportkit-logo.png" alt="ReportKit for Laravel" width="168">
+  <img src="https://raw.githubusercontent.com/Maijied/Reportkit-Core/main/brand/png/reportkit-mark-1024.png" alt="ReportKit for Laravel" width="168">
 </p>
 
 <h1 align="center">ReportKit&nbsp;for&nbsp;Laravel</h1>
@@ -12,7 +12,7 @@
   <a href="https://packagist.org/packages/reportkit/laravel"><img src="https://img.shields.io/packagist/dt/reportkit/laravel?style=flat-square&color=34c98a&labelColor=08130f" alt="Packagist downloads" /></a>
   <img src="https://img.shields.io/badge/php-%E2%89%A5%207.0-777bb4?style=flat-square&labelColor=08130f" alt="PHP" />
   <img src="https://img.shields.io/badge/laravel-5.5%20%E2%86%92%2013-ff2d20?style=flat-square&labelColor=08130f" alt="Laravel" />
-  <a href="https://github.com/Maijied/Reportkit-Laravel/actions/workflows/ci.yml"><img src="https://github.com/Maijied/Reportkit-Laravel/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <a href="https://github.com/Maijied/Reportkit-Core/actions/workflows/laravel-ci.yml"><img src="https://github.com/Maijied/Reportkit-Core/actions/workflows/laravel-ci.yml/badge.svg" alt="CI" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/packagist/l/reportkit/laravel?style=flat-square&color=0b7a4b&labelColor=08130f" alt="License" /></a>
 </p>
 
@@ -24,7 +24,7 @@
   <a href="https://reportkit.lorapok.tech">Website &amp; Docs</a> ·
   <a href="https://reportkit.lorapok.tech/showcase">Live Demo</a> ·
   <a href="docs/INSTALL.md">Install guide</a> ·
-  <a href="https://github.com/Maijied/Reportkit-Laravel-Legacy">Laravel 4.1–5.4</a>
+  <a href="https://github.com/Maijied/Reportkit-Core/tree/main/reportkit-laravel-legacy">Laravel 4.1–5.4</a>
 </p>
 
 > **Part of the Lorapok Labs ecosystem.** The modern Laravel adapter for [ReportKit Core](https://github.com/Maijied/Reportkit-Core) — auto-discovered provider, `ReportKit` facade, CAS Blade views, and Artisan scaffolding.
@@ -112,8 +112,7 @@ composer require "reportkit/laravel:^0.1@beta"
 ```json
 {
   "repositories": [
-    { "type": "vcs", "url": "https://github.com/Maijied/Reportkit-Core.git" },
-    { "type": "vcs", "url": "https://github.com/Maijied/Reportkit-Laravel.git" }
+    { "type": "vcs", "url": "https://github.com/Maijied/Reportkit-Core.git" }
   ],
   "require": {
     "reportkit/core": "dev-main",
@@ -163,14 +162,16 @@ $rows = $source->getRows($filters);  // merged + deduped + sorted
 | Package | Role |
 |---------|------|
 | [`reportkit/core`](https://github.com/Maijied/Reportkit-Core) | Engine (PHP 5.6 → 8.5) |
-| [`reportkit/laravel-legacy`](https://github.com/Maijied/Reportkit-Laravel-Legacy) | Laravel 4.1 – 5.4 |
-| [`reportkit/laravel`](https://github.com/Maijied/Reportkit-Laravel) | This repository (5.5 → 12 / 13) |
-| [`@lorapok-labs/reportkit-ui`](https://github.com/Maijied/Reportkit-UI) | Browser CSS/JS |
+| [`reportkit/laravel-legacy`](https://github.com/Maijied/Reportkit-Core/tree/main/reportkit-laravel-legacy) | Laravel 4.1 – 5.4 |
+| [`reportkit/laravel`](https://github.com/Maijied/Reportkit-Core/tree/main/reportkit-laravel) | This package (5.5 → 12 / 13) |
+| [`@lorapok-labs/reportkit-ui`](https://github.com/Maijied/Reportkit-Core/tree/main/reportkit-ui) | Browser CSS/JS |
 
 ## Author
 
-**Mohammad Maizied Hasan Majumder** · [mdshuvo40@gmail.com](mailto:mdshuvo40@gmail.com)
-Founder &amp; Principal Engineer at **Lorapok Labs** · Senior Software Engineer @ **Shohoz Ltd**
+**Mohammad Maizied Hasan Majumder** (Maijied) · Senior Software Engineer @ **Shohoz Ltd** · Founder and Principal Engineer @ **Lorapok Labs**  
+Dhaka, Bangladesh · [mdshuvo40@gmail.com](mailto:mdshuvo40@gmail.com) · [GitHub @Maijied](https://github.com/Maijied)
+
+Full profile: [AUTHORS.md](../AUTHORS.md)
 
 ## License
 
