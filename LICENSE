@@ -1,84 +1,22 @@
-Lorapok Non-Commercial License 1.0 (Lorapok-NCL-1.0)
+MIT License
 
-Copyright (c) 2026 Mohammad Maizied Hasan Majumder
-Lorapok Labs — https://lorapok.tech
+Copyright (c) 2026 Mohammad Maizied Hasan Majumder (mdshuvo40@gmail.com)
+Lorapok Labs
 
-Developed by Lorapok Labs. Creator: Mohammad Maizied Hasan Majumder.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-================================================================================
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-1. DEFINITIONS
-
-   "Software" means the ReportKit source code, documentation, assets, and
-   derivative works in this repository and its published packages, including
-   reportkit/core, reportkit/laravel, reportkit/laravel-legacy, and
-   @lorapok-labs/reportkit-ui.
-
-   "You" means any individual or legal entity exercising permissions under
-   this license.
-
-   "Commercial Use" means any use intended for or directed toward commercial
-   advantage or monetary compensation, including without limitation:
-   (a) selling, licensing, or sublicensing the Software or derivative works;
-   (b) offering the Software, or a product or service whose value derives
-       substantially from the Software, for a fee or other consideration;
-   (c) using the Software to provide paid reporting, export, or analytics
-       services to third parties; or
-   (d) distributing the Software as part of a commercial product line.
-
-2. GRANT OF RIGHTS
-
-   Subject to the terms below, Lorapok Labs grants You a worldwide,
-   royalty-free, non-exclusive license to use, copy, modify, merge, publish,
-   and distribute the Software for non-commercial purposes.
-
-3. RESTRICTIONS
-
-   You may NOT, without prior written permission from Lorapok Labs:
-
-   (a) engage in Commercial Use of the Software;
-   (b) remove or alter copyright, license, or attribution notices;
-   (c) misrepresent the origin of the Software or imply endorsement by
-       Lorapok Labs without authorization;
-   (d) use the name "ReportKit", "Lorapok Labs", or the author's name to
-       promote a derivative product in a way that suggests official status.
-
-4. COMMERCIAL LICENSE
-
-   Commercial Use requires a separate written license agreement with
-   Lorapok Labs. Contact: mdshuvo40@gmail.com
-
-5. ATTRIBUTION
-
-   All copies or substantial portions must include:
-   (a) this license;
-   (b) the copyright notice above; and
-   (c) a statement that the Software was developed by Lorapok Labs and
-       Mohammad Maizied Hasan Majumder.
-
-6. PATENT
-
-   This license does not grant any rights to patents or trademarks of
-   Lorapok Labs except as required for attribution.
-
-7. TERMINATION
-
-   This license terminates automatically if You breach its terms. Sections
-   3, 5, 8, and 9 survive termination.
-
-8. DISCLAIMER OF WARRANTY
-
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-   OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
-   FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
-
-9. LIMITATION OF LIABILITY
-
-   IN NO EVENT SHALL LORAPOK LABS OR MOHAMMAD MAIZIED HASAN MAJUMDER BE
-   LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN CONTRACT,
-   TORT, OR OTHERWISE, ARISING FROM OR IN CONNECTION WITH THE SOFTWARE.
-
-================================================================================
-
-ReportKit is free to use and modify. It is not free to sell or offer as a
-paid product or service without a commercial license from Lorapok Labs.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
