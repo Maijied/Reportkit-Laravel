@@ -1,20 +1,9 @@
 <?php
 
-/**
- * Lorapok ReportKit
- * Copyright (c) 2026 Lorapok Labs (https://lorapok.tech)
- * Licensed under the Lorapok Non-Commercial License 1.0 (Lorapok-NCL-1.0)
- *
- * ReportKitServiceProvider — Laravel 5.5+ service provider for ReportKit.
- */
-
 namespace ReportKit\Laravel;
 
 use Illuminate\Support\ServiceProvider;
 use ReportKit\Core\Settings\ArraySettingsStore;
-use ReportKit\Core\Settings\BrowserSettingsBuilder;
-use ReportKit\Core\Settings\ConfigSettingsMapper;
-use ReportKit\Core\Settings\ReportkitConfig;
 use ReportKit\Core\Settings\SettingsStore;
 use ReportKit\Laravel\Console\InstallCommand;
 use ReportKit\Laravel\Console\MakeReportCommand;
@@ -38,14 +27,14 @@ class ReportKitServiceProvider extends ServiceProvider
         $this->app->singleton('reportkit.settings', function ($app) {
             $config = function_exists('config') ? config('reportkit', []) : [];
 
-            return new ArraySettingsStore(ConfigSettingsMapper::fromReportkitConfig($config));
-        });
-
-        $packageRoot = dirname(__DIR__);
-        $this->app->singleton('reportkit.browser_settings', function ($app) use ($packageRoot) {
-            $config = ReportkitConfig::load($app, $packageRoot . '/config/reportkit.php');
-
-            return BrowserSettingsBuilder::fromConfig($config);
+            return new ArraySettingsStore([
+                'brand.name' => isset($config['brand']['name']) ? $config['brand']['name'] : 'ReportKit',
+                'brand.pdf_disclaimer' => isset($config['brand']['pdf_disclaimer'])
+                    ? $config['brand']['pdf_disclaimer']
+                    : 'This document was generated for authorized use only.',
+                'brand.accent' => isset($config['brand']['accent']) ? $config['brand']['accent'] : '#0b7a4b',
+                'routes.enabled' => !empty($config['routes']['enabled']),
+            ]);
         });
 
         $this->app->bind(SettingsStore::class, function ($app) {

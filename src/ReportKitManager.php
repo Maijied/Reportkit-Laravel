@@ -1,13 +1,5 @@
 <?php
 
-/**
- * Lorapok ReportKit
- * Copyright (c) 2026 Lorapok Labs (https://lorapok.tech)
- * Licensed under the Lorapok Non-Commercial License 1.0 (Lorapok-NCL-1.0)
- *
- * ReportKitManager — @param string $id.
- */
-
 namespace ReportKit\Laravel;
 
 use ReportKit\Core\Report\Report as CoreReport;
