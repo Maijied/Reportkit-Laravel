@@ -1,7 +1,7 @@
 > Plain-text overview for Packagist (no Mermaid). GitHub renders the full diagram version in [README.md](README.md).
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Maijied/Reportkit-Laravel/main/assets/reportkit-logo.png" alt="ReportKit for Laravel" width="160">
+  <img src="https://raw.githubusercontent.com/Maijied/Reportkit-Core/main/brand/png/reportkit-mark-1024.png" alt="ReportKit for Laravel" width="160">
 </p>
 
 <h1 align="center">ReportKit for Laravel</h1>
@@ -113,8 +113,8 @@ $rows = $source->getRows($filters);  // merged + deduped + sorted
 
 ## Author
 
-**Mohammad Maizied Hasan Majumder** · [mdshuvo40@gmail.com](mailto:mdshuvo40@gmail.com)
-Founder & Principal Engineer at Lorapok Labs · Senior Software Engineer @ Shohoz Ltd
+**Mohammad Maizied Hasan Majumder** (Maijied) · Senior Software Engineer @ Shohoz Ltd · Founder @ Lorapok Labs  
+Dhaka, Bangladesh · [mdshuvo40@gmail.com](mailto:mdshuvo40@gmail.com) · [GitHub @Maijied](https://github.com/Maijied)
 
 ## License
 
