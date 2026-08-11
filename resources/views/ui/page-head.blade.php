@@ -1,11 +1,3 @@
-{{--
- * Lorapok ReportKit
- * Copyright (c) 2026 Lorapok Labs (https://lorapok.tech)
- * Licensed under the Lorapok Non-Commercial License 1.0 (Lorapok-NCL-1.0)
- *
- * page-head — Blade UI partial.
---}}
-
 {{-- Page header: kicker + title + subtitle (+ optional pill) --}}
 @if (!empty($reportTitle) || !empty($reportKicker))
 <div class="rk-page-head">
