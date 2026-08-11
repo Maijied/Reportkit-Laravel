@@ -1,7 +1,7 @@
 > Plain-text overview for Packagist (no Mermaid). GitHub renders the full diagram version in [README.md](README.md).
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Maijied/Reportkit-Core/main/brand/png/reportkit-mark-1024.png" alt="ReportKit for Laravel" width="160">
+  <img src="https://raw.githubusercontent.com/Maijied/Reportkit-Laravel/main/assets/reportkit-logo.png" alt="ReportKit for Laravel" width="160">
 </p>
 
 <h1 align="center">ReportKit for Laravel</h1>
@@ -20,9 +20,9 @@
 >
 > **Website & docs:** https://reportkit.lorapok.tech · **Part of the Lorapok Labs ecosystem.**
 >
-> For Laravel **4.1–5.4**, use [`reportkit/laravel-legacy`](https://github.com/Maijied/Reportkit-Core/tree/main/reportkit-laravel-legacy).
+> For Laravel **4.1–5.4**, use [`reportkit/laravel-legacy`](https://github.com/Maijied/Reportkit-Laravel-Legacy).
 
-> A diagram-rich version of this README (with Mermaid) is shown on the [monorepo package page](https://github.com/Maijied/Reportkit-Core/tree/main/reportkit-laravel).
+> A diagram-rich version of this README (with Mermaid) is shown on the [GitHub repository page](https://github.com/Maijied/Reportkit-Laravel).
 
 ## What you get
 
@@ -61,7 +61,8 @@ Install from Git (VCS):
 ```json
 {
   "repositories": [
-    { "type": "vcs", "url": "https://github.com/Maijied/Reportkit-Core.git" }
+    { "type": "vcs", "url": "https://github.com/Maijied/Reportkit-Core.git" },
+    { "type": "vcs", "url": "https://github.com/Maijied/Reportkit-Laravel.git" }
   ],
   "require": {
     "reportkit/core": "dev-main",
@@ -112,8 +113,8 @@ $rows = $source->getRows($filters);  // merged + deduped + sorted
 
 ## Author
 
-**Mohammad Maizied Hasan Majumder** (Maijied) · Senior Software Engineer @ Shohoz Ltd · Founder and Principal Engineer @ Lorapok Labs  
-Dhaka, Bangladesh · [mdshuvo40@gmail.com](mailto:mdshuvo40@gmail.com) · [GitHub @Maijied](https://github.com/Maijied)
+**Mohammad Maizied Hasan Majumder** · [mdshuvo40@gmail.com](mailto:mdshuvo40@gmail.com)
+Founder & Principal Engineer at Lorapok Labs · Senior Software Engineer @ Shohoz Ltd
 
 ## License
 
