@@ -1,0 +1,32 @@
+<?php
+/**
+ * Stub: app/Reports/{{Studly}}Report.php (ledger-sync preset)
+ */
+use ReportKit\Core\Report\Report;
+use ReportKit\Core\Table\Column;
+use ReportKit\Core\Table\ReportTable;
+
+Report::define('{{slug}}', function ($r) {
+    $r->title('{{title}}')
+        ->kicker('BILLING')
+        ->subtitle('Sync ledger browse — host SQL per fetch (small date windows).')
+        ->route('{{route}}')
+        ->service('App\\Services\\Reports\\{{Studly}}ReportService')
+        ->flags([
+{{flags_php}}
+        ])
+        ->table(
+            ReportTable::make('main')
+                ->title('Ledger')
+                ->serverSide()
+                ->pageLength(25)
+                ->columns([
+                    Column::make('transaction_date', 'Date')->sortable(),
+                    Column::make('transaction_type', 'Type'),
+                    Column::make('pnr', 'PNR'),
+                    Column::make('credit_amount', 'Credit')->sortable(),
+                    Column::make('debit_amount', 'Debit')->sortable(),
+                    Column::make('balance', 'Balance')->sortable(),
+                ])
+        );
+});
