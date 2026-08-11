@@ -2,7 +2,7 @@
     "name": "reportkit/laravel",
     "description": "Laravel 5.5\u201313 adapter for ReportKit (provider, Blade CAS pack, reportkit:make).",
     "type": "library",
-    "license": "LicenseRef-Lorapok-NCL-1.0",
+    "license": "MIT",
     "homepage": "https://github.com/Maijied/Reportkit-Core/tree/main/reportkit-laravel",
     "support": {
         "issues": "https://github.com/Maijied/Reportkit-Core/issues",

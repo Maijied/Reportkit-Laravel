@@ -1,13 +1,5 @@
 <?php
 
-/**
- * Lorapok ReportKit
- * Copyright (c) 2026 Lorapok Labs (https://lorapok.tech)
- * Licensed under the Lorapok Non-Commercial License 1.0 (Lorapok-NCL-1.0)
- *
- * MakeReportCommand — Scaffold a new report stack for modern Laravel hosts.
- */
-
 namespace ReportKit\Laravel\Console;
 
 use Illuminate\Console\Command;
@@ -21,7 +13,7 @@ class MakeReportCommand extends Command
     protected $signature = 'reportkit:make
         {name : Studly report name, e.g. Demo}
         {--route= : Route prefix}
-        {--preset=hybrid : datatable|prepare|hybrid|hybrid-browse|ledger-sync|hybrid-export|datatables-sync|hybrid-kpi}
+        {--preset=hybrid : datatable|prepare|hybrid}
         {--layout=layouts.app : Blade layout to @extends (unused when stub extends reportkit layout)}
         {--flags= : Comma list overriding preset}
         {--force : Overwrite existing files}
@@ -74,7 +66,7 @@ class MakeReportCommand extends Command
             }
 
             $target = base_path($relative);
-            $stubFile = $this->resolveStub($stubDir, $stubName, $preset);
+            $stubFile = $stubDir . '/' . $stubName;
 
             if (file_exists($target) && !$force) {
                 $this->comment("Skip existing: {$relative}");
@@ -107,9 +99,6 @@ class MakeReportCommand extends Command
         if (!empty($flags['datatables'])) {
             $this->line("  Route::get('{$route}/data', [\\App\\Http\\Controllers\\Reports\\{$studly}ReportController::class, 'data']);");
         }
-        if (!empty($flags['async_prepare'])) {
-            $this->line("  Enable reportkit routes: weeks, rows, prepared, browse for slug `{$slug}`");
-        }
         $this->comment('Existing reports were not modified.');
 
         return 0;
@@ -124,44 +113,16 @@ class MakeReportCommand extends Command
     {
         $defaults = [
             'datatable' => [
-                'datatables' => true, 'sync' => true, 'async_prepare' => false, 'browse_prepared' => false,
-                'kpi' => true, 'ledger' => false, 'excel' => true, 'csv' => true, 'pdf' => false,
-                'email' => false, 'print' => false, 'howto' => false, 'activity_log' => false,
+                'datatables' => true, 'sync' => true, 'async_prepare' => false,
+                'kpi' => true, 'excel' => true, 'csv' => true, 'pdf' => false, 'email' => false,
             ],
             'prepare' => [
-                'datatables' => false, 'sync' => false, 'async_prepare' => true, 'browse_prepared' => false,
-                'kpi' => true, 'ledger' => false, 'excel' => true, 'csv' => true, 'pdf' => true,
-                'email' => true, 'print' => false, 'howto' => true, 'activity_log' => true,
+                'datatables' => false, 'sync' => false, 'async_prepare' => true,
+                'kpi' => true, 'excel' => true, 'csv' => true, 'pdf' => true, 'email' => true,
             ],
             'hybrid' => [
-                'datatables' => true, 'sync' => true, 'async_prepare' => true, 'browse_prepared' => false,
-                'kpi' => true, 'ledger' => false, 'excel' => true, 'csv' => true, 'pdf' => true,
-                'email' => false, 'print' => false, 'howto' => false, 'activity_log' => false,
-            ],
-            'hybrid-export' => [
-                'datatables' => false, 'sync' => false, 'async_prepare' => true, 'browse_prepared' => false,
-                'kpi' => true, 'ledger' => false, 'excel' => true, 'csv' => true, 'pdf' => true,
-                'email' => true, 'print' => false, 'howto' => true, 'activity_log' => true,
-            ],
-            'hybrid-browse' => [
-                'datatables' => true, 'sync' => false, 'async_prepare' => true, 'browse_prepared' => true,
-                'kpi' => true, 'ledger' => true, 'excel' => true, 'csv' => true, 'pdf' => true,
-                'email' => false, 'print' => false, 'howto' => true, 'activity_log' => true,
-            ],
-            'ledger-sync' => [
-                'datatables' => true, 'sync' => true, 'async_prepare' => false, 'browse_prepared' => false,
-                'kpi' => true, 'ledger' => true, 'excel' => true, 'csv' => true, 'pdf' => false,
-                'email' => false, 'print' => true, 'howto' => false, 'activity_log' => false,
-            ],
-            'datatables-sync' => [
-                'datatables' => true, 'sync' => true, 'async_prepare' => false, 'browse_prepared' => false,
-                'kpi' => true, 'ledger' => false, 'excel' => true, 'csv' => true, 'pdf' => false,
-                'email' => false, 'print' => false, 'howto' => false, 'activity_log' => false,
-            ],
-            'hybrid-kpi' => [
-                'datatables' => false, 'sync' => false, 'async_prepare' => true, 'browse_prepared' => false,
-                'kpi' => true, 'ledger' => false, 'excel' => false, 'csv' => false, 'pdf' => false,
-                'email' => false, 'print' => false, 'howto' => false, 'activity_log' => true,
+                'datatables' => true, 'sync' => true, 'async_prepare' => true,
+                'kpi' => true, 'excel' => true, 'csv' => true, 'pdf' => true, 'email' => false,
             ],
         ];
 
@@ -169,7 +130,7 @@ class MakeReportCommand extends Command
 
         if ($flagsOpt) {
             $requested = array_filter(array_map('trim', explode(',', $flagsOpt)));
-            $all = ['datatables', 'sync', 'async_prepare', 'browse_prepared', 'kpi', 'ledger', 'excel', 'csv', 'pdf', 'email', 'print', 'howto', 'activity_log'];
+            $all = ['datatables', 'sync', 'async_prepare', 'kpi', 'excel', 'csv', 'pdf', 'email', 'print', 'howto'];
             foreach ($all as $key) {
                 $flags[$key] = in_array($key, $requested, true);
             }
@@ -190,24 +151,5 @@ class MakeReportCommand extends Command
         }
 
         return implode("\n", $lines);
-    }
-
-    /**
-     * Prefer preset-specific stub when present (e.g. report.blade.hybrid-browse.stub).
-     *
-     * @param string $stubDir
-     * @param string $stubName
-     * @param string $preset
-     * @return string
-     */
-    protected function resolveStub($stubDir, $stubName, $preset)
-    {
-        $presetPath = $stubDir . '/' . preg_replace('/\.stub$/', ".{$preset}.stub", $stubName);
-
-        if (file_exists($presetPath)) {
-            return $presetPath;
-        }
-
-        return $stubDir . '/' . $stubName;
     }
 }

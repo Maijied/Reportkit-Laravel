@@ -1,39 +1,20 @@
 <?php
 
-/**
- * Lorapok ReportKit
- * Copyright (c) 2026 Lorapok Labs (https://lorapok.tech)
- * Licensed under the Lorapok Non-Commercial License 1.0 (Lorapok-NCL-1.0)
- *
- * InstallCommand — @return PackageManifest.
- */
-
 namespace ReportKit\Laravel\Console;
 
 use Illuminate\Console\Command;
-use ReportKit\Core\Support\HostRuntime;
-use ReportKit\Core\Support\PackageManifest;
 
 class InstallCommand extends Command
 {
-    /** @var PackageManifest|null */
-    protected $manifestCache;
-
     protected $signature = 'reportkit:install
                             {--publish-assets : Publish @lorapok-labs/reportkit-ui CSS/JS into public/vendor/reportkit}
                             {--with-config : Publish config/reportkit.php}';
 
-    public function getDescription()
-    {
-        return $this->manifest()->installCommandDescription();
-    }
+    protected $description = 'Install ReportKit checklist / publish assets & config (Laravel 5.5+)';
 
     public function handle()
     {
-        $manifest = $this->manifest();
-        $hostVersion = HostRuntime::laravelVersion($this->laravel);
-
-        $this->info($manifest->installBanner($hostVersion));
+        $this->info('ReportKit install (Laravel 5.5 → current)');
         $this->line('');
 
         if ($this->option('with-config') && method_exists($this, 'call')) {
@@ -51,36 +32,16 @@ class InstallCommand extends Command
             $this->copyUiFromSiblingOrVendor();
         }
 
-        $step = 1;
-        $this->line($step++ . '. ' . $manifest->formatComposerRequire());
-        $this->line($step++ . '. php artisan reportkit:install --with-config --publish-assets');
-        $this->line(
-            $step++ . '. Create '
-            . $manifest->installMeta('definitions_path', 'app/Reports/')
-            . ' for Report::define files'
-        );
-        $this->line($step++ . '. Scaffold: ' . $manifest->installMeta('scaffold_example'));
-        $optional = $manifest->installMeta('optional_note');
-        if ($optional) {
-            $this->line($step++ . '. ' . $optional);
-        }
-        $this->line($step++ . '. Do NOT migrate existing host reports until ready');
+        $this->line('1. composer require reportkit/core reportkit/laravel');
+        $this->line('2. php artisan reportkit:install --with-config --publish-assets');
+        $this->line('3. Create app/Reports/ for Report::define files');
+        $this->line('4. Scaffold: php artisan reportkit:make Demo --route=admin/demo-report --preset=hybrid');
+        $this->line('5. Set reportkit.routes.enabled=true and call ReportKit::routes() (optional)');
+        $this->line('6. Do NOT migrate existing host reports until ready');
         $this->line('');
-        $this->info('Docs: ' . $manifest->docsUrl('install'));
+        $this->info('Docs: https://reportkit.lorapok.tech/docs/0.1/getting-started/installation');
 
         return 0;
-    }
-
-    /**
-     * @return PackageManifest
-     */
-    protected function manifest()
-    {
-        if (!$this->manifestCache) {
-            $this->manifestCache = PackageManifest::fromPackageRoot(dirname(__DIR__, 2));
-        }
-
-        return $this->manifestCache;
     }
 
     /**
@@ -131,34 +92,6 @@ class InstallCommand extends Command
 
             copy($src, $dest);
             $this->line('Published ' . $rel);
-        }
-
-        $this->copyAnimatedAssets();
-    }
-
-    /**
-     * Copy Kit-Larva loader GIFs into public/vendor/reportkit/img/.
-     *
-     * @return void
-     */
-    protected function copyAnimatedAssets()
-    {
-        $packageRoot = dirname(__DIR__, 2);
-        $packageAnim = $packageRoot . '/assets/animated';
-        $destDir = public_path('vendor/reportkit/img');
-
-        if (!is_dir($packageAnim)) {
-            return;
-        }
-
-        if (!is_dir($destDir)) {
-            mkdir($destDir, 0755, true);
-        }
-
-        foreach (glob($packageAnim . '/*.gif') as $gif) {
-            $dest = $destDir . '/' . basename($gif);
-            copy($gif, $dest);
-            $this->line('Published animated/' . basename($gif));
         }
     }
 }
