@@ -2,7 +2,7 @@
     "name": "reportkit/laravel",
     "description": "Laravel 5.5\u201313 adapter for ReportKit (provider, Blade CAS pack, reportkit:make).",
     "type": "library",
-    "license": "MIT",
+    "license": "LicenseRef-Lorapok-NCL-1.0",
     "homepage": "https://github.com/Maijied/Reportkit-Core/tree/main/reportkit-laravel",
     "support": {
         "issues": "https://github.com/Maijied/Reportkit-Core/issues",
@@ -27,9 +27,17 @@
         "illuminate/support": ">=5.5 <14",
         "reportkit/core": "^0.1@beta || ^0.1 || 0.1.* || dev-main"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6|^10.5"
+    },
     "autoload": {
         "psr-4": {
             "ReportKit\\Laravel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ReportKit\\Laravel\\Tests\\": "tests/"
         }
     },
     "extra": {
@@ -43,8 +51,31 @@
         },
         "branch-alias": {
             "dev-main": "0.1.x-dev"
+        },
+        "reportkit": {
+            "adapter": "laravel",
+            "laravel": {
+                "min": "5.5",
+                "max": "13",
+                "display": "5.5 → 13"
+            },
+            "docs": {
+                "install": "https://reportkit.lorapok.tech/docs/0.1/adapters/laravel"
+            },
+            "install": {
+                "composer_require": [
+                    "reportkit/core",
+                    "reportkit/laravel"
+                ],
+                "provider": "ReportKit\\Laravel\\ReportKitServiceProvider",
+                "facade_alias": "ReportKit",
+                "facade_class": "ReportKit\\Laravel\\Facades\\ReportKit",
+                "definitions_path": "app/Reports/"
+            }
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+    }
 }

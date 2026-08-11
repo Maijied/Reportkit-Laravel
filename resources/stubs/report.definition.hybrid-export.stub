@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Reports;
+
+use ReportKit\Core\Report\ReportDefinition;
+
+/**
+ * {{Studly}} report — hybrid-export preset (LLDP prepare → compose → deliver).
+ */
+class {{Studly}}Report extends ReportDefinition
+{
+    public function slug()
+    {
+        return '{{slug}}';
+    }
+
+    public function title()
+    {
+        return '{{title}}';
+    }
+
+    public function flags()
+    {
+        return array(
+{{flags_php}}
+        );
+    }
+
+    public function serviceClass()
+    {
+        return '{{Studly}}ReportService';
+    }
+}

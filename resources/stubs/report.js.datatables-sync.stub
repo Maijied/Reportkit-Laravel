@@ -1,0 +1,35 @@
+(function (window) {
+    'use strict';
+    if (!window.ReportKit || !window.jQuery) {
+        return;
+    }
+    var $ = window.jQuery;
+    var cfg = window.ReportKitPageConfig || {};
+    var slug = cfg.slug || '{{slug}}';
+    var dataUrl = cfg.dataUrl || '/{{route}}/data';
+
+    ReportKit.fonts.ensure();
+    ReportKit.syncLoader.bindForm('#search-pan', '#rkSyncLoading');
+
+    ReportKit.table.mount('#' + slug + 'Table', {
+        serverSide: true,
+        ajax: { url: dataUrl, type: 'GET', data: function (d) {
+            var p = {};
+            $('#search-pan').serializeArray().forEach(function (item) {
+                if (item.name && item.value !== '') { p[item.name] = item.value; }
+            });
+            return $.extend({}, d, p);
+        }},
+        columns: [
+            { data: 'record_id', title: 'ID' },
+            { data: 'record_date', title: 'Date' },
+            { data: 'category', title: 'Category' },
+            { data: 'amount', title: 'Amount', className: 'rk-money' },
+            { data: 'status', title: 'Status' }
+        ],
+        loaderSelector: '#rkSyncLoading',
+        onReady: function () {
+            ReportKit.ui.setActionsEnabled('#rkActionBar', true);
+        }
+    });
+}(window));
